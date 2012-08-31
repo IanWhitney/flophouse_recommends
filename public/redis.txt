@@ -1,0 +1,59 @@
+episode_ids [id]
+episode:{id}
+
+hosts_ids [ids]
+host:{id}
+  name:{display name}
+
+recommendations [ids]
+recommendation:{id}
+  host_id:{host id}
+  imdb_id:{imdb id}
+  episode_id:{episode id}
+
+sets
+  recommendations_from_episode:{episode id} [recommendation ids]
+  recommendations_from_host:{host id} [recommendation ids]
+  hosts_for_episodes:{episode id} [host ids]
+  episodes_for_host:{host id} [episode ids]
+
+string
+  id_for_host_name:{host name} [host id]
+
+before csv table
+  
+  sadd host_names Dan
+  sadd host_names Stuart
+  sadd host_names Elliot
+  sadd host_names Guest
+  sadd host_ids 1
+  sadd host_ids 2
+  sadd host_ids 3
+  sadd host_ids 4
+  id_for_host_name:Dan 1
+  id_for_host_name:Stuart 2
+  id_for_host_name:Elliot 3
+  id_for_host_name:Guest 4
+  hset host:1 name Dan
+  hset host:2 name Stuart
+  hset host:3 name Elliot
+  hset host:4 name Guest
+  
+for |row|
+
+  sadd episode_ids row[:episode]
+  hset episode:{row[:episode]} id row[:episode]
+  {get hosts for show, for each host Name}
+    host_id = id_for_host_name:{name}
+    sadd episodes_for_host:{host id} {episode id}
+    sadd hosts_for_episode:{episode id} {host id}
+  {end}
+  
+  {for each host, get each of their recommendations}
+    recommendation_id = {episode_id}_{host_id}_{recommendation number} #first rec from a host is 0, second is 1, etc.
+    sadd recommendations {recommendation_id}
+    sadd recommendations_from_episode:{episode_id} {recommendation_id}
+    sadd recommendations_from_host:{host_id} {recommendation_id}
+    hset recommendation:{recommendation_id} host_id {host_id}
+    hset recommendation:{recommendation_id} imdb_id {value in row}
+    hset recommendation:{recommendation_id} episode_id {episode_id}
