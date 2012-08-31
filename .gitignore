@@ -4,7 +4,6 @@
 .config
 .yardoc
 config/database.yml
-Gemfile.lock
 InstalledFiles
 _yardoc
 coverage
