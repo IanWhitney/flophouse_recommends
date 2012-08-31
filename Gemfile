@@ -7,6 +7,7 @@ gem 'rails', '3.2.8'
 
 gem 'rails-api'
 gem 'redis'
+gem 'pg'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
