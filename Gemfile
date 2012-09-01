@@ -7,6 +7,8 @@ gem 'rails', '3.2.8'
 
 gem 'rails-api'
 gem 'redis'
+gem 'redis_backed_model'
+gem 'backbone-on-rails'
 gem 'pg'
 
 # To use ActiveModel has_secure_password
