@@ -1,7 +1,7 @@
 FlophouseRecommends::Application.routes.draw do
-  get "main/index"
+  root to: "main#index"
 
-  resources :recommendations, except: :edit
+  # resources :recommendations, except: :edit
   
 
   # The priority is based upon order of creation:
