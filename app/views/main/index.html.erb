@@ -4,39 +4,23 @@
 <html>
   <head>
     <title>The Flophouse Recommends</title>
-    <style type="text/css" media="screen">
-      html, body {
-        background-color: #4B7399;
-        font-family: Verdana, Helvetica, Arial;
-        font-size: 14px;
-      }
-      a { color: #0000FF; }
-
-      #container {
-        width: 75%;
-        margin: 0 auto;
-        background-color: #FFF;
-        padding: 20px 40px;
-        border: solid 1px black;
-        margin-top: 20px;
-      }
-    </style>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
-    <script type="text/javascript" charset="utf-8">
-      $(function() {
-        function addTask(task) {
-          $('#tasks').append('<li>' + task.imdb_id + '</ul>');
-        }
-
-        $.getJSON('/recommendations', function(tasks) {
-          $.each(tasks, function() { addTask(this); });
-        });
-      });
-    </script>
+  </head>
   <body>
     <div id="container">
       <h1>The Flophouse Recommends</h1>
-      <ul id="tasks"></ul>
+      <table>
+        <thead>
+          <tr>
+            <th>&nbsp;</th>
+            <% @hosts.each do |host| %>
+              <th><%= host.name %></th>
+            <% end %>
+          </tr>
+        </thead>
+        <tbody>
+        <%= render :partial => '/episodes/index', :collection => @episodes, :as => :episode %>
+        </tbody>
+      </table>
     </div>
   </body>
 </html>

@@ -1,0 +1,13 @@
+<tr>
+  <td>
+    <%= episode.number %>
+  </td>
+  <% @hosts.each do |host| %>
+  <td>
+  <% recommendations = Recommendations.by_episode(episode).by_host(host).all%>
+    <% recommendations.each do |recommendation| %>
+      <%= RecommendationDisplay.new(recommendation).name %><br />
+    <% end %>
+  </td>
+<% end %>
+</tr>

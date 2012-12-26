@@ -8,7 +8,9 @@ gem 'rails', '3.2.8'
 gem 'redis'
 gem 'redis_backed_model'
 gem 'backbone-on-rails'
+gem 'sqlite3'
 gem 'pg'
+gem 'rspec'
 
 
 # Gems used only for assets and not required

@@ -1,33 +1,11 @@
-class Recommendation < RedisBackedModel::RedisBackedModel
-  
-  def self.all
-    all = []
-    ids.each do |id|
-      all << self.find(id)
-    end
-    all
+class Recommendation < RedisBase
+  attr_reader :host_id, :episode_id, :imdb_id
+
+  def episode
+    has_one(Episode)
   end
-    
-  def self.find(*args)
-    args.flatten!
-    found = []
-    args.each do |id|
-      attr = $redis.hgetall("#{key}:#{id}")
-      found << self.new(attr)
-    end
-    
-    found.count == 1 ? found.first : found
+
+  def host
+    has_one(Host)
   end
-  
-  
-  private
-  
-  def self.key
-    'recommendation'
-  end
-  
-  def self.ids
-    @ids ||= $redis.smembers("#{key.pluralize}")
-  end
-  
 end
