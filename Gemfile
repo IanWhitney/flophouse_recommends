@@ -11,7 +11,8 @@ gem 'backbone-on-rails'
 gem 'sqlite3'
 gem 'pg'
 gem 'rspec'
-
+gem 'httparty'
+gem 'twitter-bootstrap-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.

@@ -1,14 +1,15 @@
 class RecommendationDisplay
   def initialize(recommendation)
     @recommendation = recommendation
+    @movie = Movie.new(@recommendation)
     self
   end
 
   def name
-    "IMDB #{@recommendation.imdb_id}"
+    @movie.title
   end
 
   def image
-    'comes from ?'
+    @movie.poster
   end
 end

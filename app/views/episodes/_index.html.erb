@@ -1,4 +1,4 @@
-<tr>
+<tr class="<%= cycle('odd','even') %>">
   <td>
     <%= episode.number %>
   </td>
@@ -6,7 +6,9 @@
   <td>
   <% recommendations = Recommendations.by_episode(episode).by_host(host).all%>
     <% recommendations.each do |recommendation| %>
-      <%= RecommendationDisplay.new(recommendation).name %><br />
+      <% r = RecommendationDisplay.new(recommendation) %>
+      <%= image_tag(r.image) %> <br />
+      <%= r.name %><br />
     <% end %>
   </td>
 <% end %>
