@@ -1,7 +1,11 @@
 FlophouseRecommends::Application.routes.draw do
-  root to: "main#index"
+  root to: "episodes#index"
 
-  resources :episodes, :only => [:show]
+  resources :episodes, :only => [:index, :show] do
+    collection do
+      post :find
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

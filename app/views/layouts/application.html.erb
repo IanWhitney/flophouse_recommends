@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "FlophouseRecommends" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "The Flophouse Recommends" %></title>
     <%= csrf_meta_tags %>
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -36,35 +36,19 @@
   </head>
   <body>
 
-    <div class="navbar navbar-fluid-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="#">FlophouseRecommends</a>
-          <div class="container-fluid nav-collapse">
-            <ul class="nav">
-              <li><%= link_to "Link1", "/path1"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
 
     <div class="container-fluid">
       <div class="row-fluid">
         <div class="span3">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
-              <li class="nav-header">Sidebar</li>
-              <li><%= link_to "Link1", "/path1"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
+              <li class="nav-header">The Hell?</li>
+              <li><%= link_to "The Flophouse Podcast", "http://www.flophousepodcast.com/"  %></li>
+              <li>Jump to episode: 
+              <%= form_tag(find_episodes_path) do |f| %>
+                <%= text_field_tag 'id' %>
+              <% end %>
+              </li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
@@ -74,9 +58,6 @@
         </div>
       </div><!--/row-->
 
-      <footer>
-        <p>&copy; Company 2012</p>
-      </footer>
 
     </div> <!-- /container -->
 
@@ -84,6 +65,24 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <%= javascript_include_tag "application" %>
+    <script type='text/javascript'>
+      $(document).keydown(function(e){
+        switch(e.which) {
+          case 37:
+            window.location = '<%= episode_path(@next_subsequent_episode.id) %>';
+            break;
+          case 39: 
+            window.location = '<%= episode_path(@next_previous_episode.id) %>';
+            break;
+          default: return; // exit this handler for other keys
+        }
+        e.preventDefault();
+      });
 
-  </body>
+      $('.recommendation').each(function(index) {
+        x = $(window).height() - 120;
+        $(this).height(x);
+      });
+    </script>
+    </body>
 </html>

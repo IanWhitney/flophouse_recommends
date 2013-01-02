@@ -10,6 +10,6 @@ class Host < RedisBase
   end
 
   def in_episode?(episode)
-    episodes.include?(episode)
+    self.episodes && episodes.include?(episode)
   end
 end

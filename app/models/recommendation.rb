@@ -8,4 +8,8 @@ class Recommendation < RedisBase
   def host
     has_one(Host)
   end
+
+  def movie
+    has_one(Movie, self.imdb_id)
+  end
 end

@@ -6,35 +6,44 @@
   <body>
     <div id="container">
       <h1>The Flophouse Recommends</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>
-              Hosts
-            </th>
-            <th>
-              Recommendations
-            </th>
-          </tr>
-        </thead>
-        <tbody>
+        <ul id='episode_navigation'>
+          <% @subsequent_episodes.each do |episode| %>
+            <li data-id='<%= episode.id %>'>
+            <%= link_to episode.number, episode_path(episode.number) %>
+            </li>
+          <% end %>
+          <li id='current_episode' data-id='<%= @episode.id %>'>
+            <%= link_to @episode.number, episode_path(@episode.number) %>
+          </li>
+          <% @previous_episodes.each do |episode| %>
+            <li data-id='<%= episode.id %>'>
+            <%= link_to episode.number, episode_path(episode.number) %>
+            </li>
+          <% end %>
+        </ul>
+      <% if @episode.hosts %>
         <% @episode.hosts.each do |host| %>
-          <tr>
-            <th><%= host.name %></th>
-            <th>
-              <% recommendations =  Recommendations.by_host(host).by_episode(@episode).all %>
-              <% recommendations.each do |recommendation| %>
-                <div style='float:left;'>
-                  <% r = RecommendationDisplay.new(recommendation) %>
-                  <%= image_tag(r.image) %> <br />
-                  <%= r.name %>
-                </div>
-              <% end %>
-            </th>
-          </tr>
+          <div class='recommendation <%= cycle('even','odd') %>' style='width:<%= 100/@episode.hosts.count %>%;float:left;'>
+            <%= host.name %><br />
+            <% recommendations =  Recommendations.by_host(host).by_episode(@episode).all %>
+            <% recommendations.each do |recommendation| %>
+              <div style='text-align:center;float:left;'>
+                <% r = RecommendationDisplay.new(recommendation) %>
+                <% if r.image %>
+                  <%= link_to image_tag(r.image) , "http://www.imdb.com/title/#{recommendation.movie.id}", {target: '_blank'} %><br />
+                <% else %>
+                  <%= link_to image_tag("/images/nopicture.gif") , "http://www.imdb.com/title/#{recommendation.movie.id}", {target: '_blank'} %><br />
+                <% end %>
+                <%= link_to r.name, "http://www.imdb.com/title/#{recommendation.movie.id}", {target: '_blank'} %>
+              </div>
+            <% end %>
+          </div>
         <% end %>
-        </tbody>
-      </table>
+      <% else %>
+        <div style="width:100%">
+          No recommendations for this episode.
+        </div> 
+      <% end %>
     </div>
   </body>
 </html>

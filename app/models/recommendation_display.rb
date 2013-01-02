@@ -1,7 +1,7 @@
 class RecommendationDisplay
   def initialize(recommendation)
     @recommendation = recommendation
-    @movie = Movie.new(@recommendation)
+    @movie = @recommendation.movie
     self
   end
 

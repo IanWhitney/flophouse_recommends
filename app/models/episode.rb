@@ -1,4 +1,8 @@
 class Episode < RedisBase
+  def self.all
+    super.reverse
+  end
+
   def number
     self.id
   end
@@ -12,6 +16,6 @@ class Episode < RedisBase
   end
 
   def has_host?(host)
-    hosts.include?(host)
+    self.hosts && self.hosts.include?(host)
   end
 end

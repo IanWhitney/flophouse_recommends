@@ -1,14 +1,26 @@
-class Movie
+class Movie < RedisBase
   attr_reader :title, :poster
 
-  def initialize(recommendation)
-    @recommendation = recommendation
-    properties = get_properties
-  end 
+  def self.find(*args)
+    movie = super(*args)
+    if !movie
+      populate_redis_from_movie_service(*args)
+    else
+      movie
+    end
+  end
 
-  def get_properties()
-    imdb_details = IMDBEntry.new(@recommendation.imdb_id).details
-    @title = imdb_details["Title"]
-    @poster = imdb_details["Poster"]
+  def self.populate_redis_from_movie_service(*args)
+    args.flatten.each do |id|
+      imdb_details = IMDBEntry.new(id).details
+      $redis.hset "movie:#{id}", 'id', id
+      $redis.hset "movie:#{id}", 'title', imdb_details["Title"]
+      $redis.hset "movie:#{id}", 'poster', imdb_details["Poster"]
+    end
+    self.find(*args)
+  end
+
+  def poster
+    @poster if @poster.match(/http/)
   end
 end
