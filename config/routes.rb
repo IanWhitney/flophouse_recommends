@@ -1,8 +1,7 @@
 FlophouseRecommends::Application.routes.draw do
   root to: "main#index"
 
-  #resources :recommendations, except: :edit
-  
+  resources :episodes, :only => [:show]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
