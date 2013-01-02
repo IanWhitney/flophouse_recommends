@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>The Flophouse Recommends</title>
+  </head>
+  <body>
+    <div id="container">
+      <h1>The Flophouse Recommends</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              Hosts
+            </th>
+            <th>
+              Recommendations
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @episode.hosts.each do |host| %>
+          <tr>
+            <th><%= host.name %></th>
+            <th>
+              <% recommendations =  Recommendations.by_host(host).by_episode(@episode).all %>
+              <% recommendations.each do |recommendation| %>
+                <div style='float:left;'>
+                  <% r = RecommendationDisplay.new(recommendation) %>
+                  <%= image_tag(r.image) %> <br />
+                  <%= r.name %>
+                </div>
+              <% end %>
+            </th>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
