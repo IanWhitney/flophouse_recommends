@@ -50,8 +50,14 @@ GEM
     eco-source (1.1.0.rc.1)
     ejs (1.0.0)
     erubis (2.7.0)
+    excon (0.16.10)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    heroku-api (0.3.7)
+      excon (~> 0.16.10)
+    heroku_san (4.0.7)
+      heroku-api (>= 0.1.2)
+      rake
     hike (1.2.1)
     httparty (0.9.0)
       multi_json (~> 1.0)
@@ -137,6 +143,7 @@ PLATFORMS
 DEPENDENCIES
   backbone-on-rails
   coffee-rails (~> 3.2.1)
+  heroku_san
   httparty
   jquery-rails
   pg
