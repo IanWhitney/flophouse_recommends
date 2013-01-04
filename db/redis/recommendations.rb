@@ -1,4 +1,4 @@
-require 'CSV'
+require 'csv'
 
 @data_file = File.open("test/csv/data.csv")
 @hosts = ["Dan","Stuart","Elliot","Guest"]
