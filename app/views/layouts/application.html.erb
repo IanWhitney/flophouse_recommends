@@ -43,8 +43,8 @@
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">The Hell?</li>
-              <li><%= link_to "The Flophouse Podcast", "http://www.flophousepodcast.com/"  %></li>
-              <li>Jump to episode: 
+              <li><%= link_to "The Flophouse Podcast", "http://www.flophousepodcast.com/"  %> recommends movies at the end of every episode. This site lists all of their recommendations. Click on a title or movie poster to go to IMDB. Click on a hosts's name to see all the movies s/he has recommended. Click on an episode number (or use the left/right arrow keys) to move between episodes.</li>
+              <li>Jump to episode number:
               <%= form_tag(find_episodes_path) do |f| %>
                 <%= text_field_tag 'id' %>
               <% end %>
@@ -65,24 +65,5 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <%= javascript_include_tag "application" %>
-    <script type='text/javascript'>
-      $(document).keydown(function(e){
-        switch(e.which) {
-          case 37:
-            window.location = '<%= episode_path(@next_subsequent_episode.id) %>';
-            break;
-          case 39: 
-            window.location = '<%= episode_path(@next_previous_episode.id) %>';
-            break;
-          default: return; // exit this handler for other keys
-        }
-        e.preventDefault();
-      });
-
-      $('.recommendation').each(function(index) {
-        x = $(window).height() - 120;
-        $(this).height(x);
-      });
-    </script>
     </body>
 </html>

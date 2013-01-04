@@ -1,0 +1,18 @@
+    <div id="container">
+      <h1>The Flophouse Recommends</h1>
+      <h2><%= @host.name %></h2>
+      <% @episodes.each do |episode| %>
+        <h3>
+          <%= link_to "Episode: #{episode.number}", episode_path(episode.id) %></h3>
+        <ul>
+        <% recommendations =  Recommendations.by_host(@host).by_episode(episode).all %>
+        <% recommendations.each do |recommendation| %>
+          <% r = RecommendationDisplay.new(recommendation) %>
+          <li>
+            <%= link_to r.name, "http://www.imdb.com/title/#{recommendation.movie.id}", {target: '_blank'} %>
+          </li>
+        <% end %>
+        </ul>
+      <% end %>
+    </div>
+

@@ -28,6 +28,7 @@ recommendation_rows.each do |row|
       recommendations.each_with_index do |recommendation,index|
         recommendation_number = (index + 1)
         recommendation_id = "#{episode_id}_#{host_id}_#{recommendation_number}"
+        $redis.incr recommendation
         $redis.sadd 'recommendation_ids', recommendation_id
         $redis.sadd "recommendations_for_episode:#{episode_id}", recommendation_id
         $redis.sadd "recommendations_for_host:#{host_id}", recommendation_id

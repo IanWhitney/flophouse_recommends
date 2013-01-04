@@ -10,6 +10,10 @@ class RecommendationDisplay
   end
 
   def image
-    @movie.poster
+    if @movie.poster
+      @movie.poster
+    else
+      "/images/nopicture.gif"
+    end
   end
 end

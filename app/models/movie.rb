@@ -20,6 +20,10 @@ class Movie < RedisBase
     self.find(*args)
   end
 
+  def number_of_recommendations
+    $redis.get(self.id).to_i
+  end
+
   def poster
     @poster if @poster.match(/http/)
   end
