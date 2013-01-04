@@ -88,44 +88,6 @@
   width: 100%;
 }
 
-span.recommendation_count {
-    position:absolute;
-    /*top:-2em;*/
-    /*right: 0.5em;*/
-    width: 1.5em;
-    height: 1.5em;
-    line-height:1.5em;
-    text-align:center;
-    font-family:'Helvetica Neue', Helvetica, sans-serif;
-    font-weight:bold;
-    color:#000;
-    text-shadow:0px 1px 0px rgba(0,0,0,.15);
-    -webkit-box-shadow:
-        inset 0px 1px 0px rgba(255,255,255,35),
-        0px 1px 1px rgba(0,0,0,.2);
-    -moz-box-shadow:
-        inset 0px 1px 0px rgba(255,255,255,.35),
-        0px 1px 1px rgba(0,0,0,.2);
-    box-shadow:
-        inset 0px 1px 0px rgba(255,255,255,.35),
-        0px 1px 1px rgba(0,0,0,.2);
-    -webkit-border-radius:4em;
-    -moz-border-radius:4em;
-    border-radius:4em;
-filter: alpha(opacity=0);
-    -webkit-transition: .3s top ease-in, .3s opacity ease-in;
-    -moz-transition: .3s top ease-in, .3s opacity ease-in;
-    -o-transition: .3s top ease-in, .3s opacity ease-in;
-    -ms-transition: .3s top ease-in, .3s opacity ease-in;
-    transition: .3s top ease-in, .3s opacity ease-in;
-    background-image: -webkit-linear-gradient(top, rgb(172, 228, 248), rgb(108, 205, 243));
-    background-image: -moz-linear-gradient(top, rgb(172, 228, 248), rgb(108, 205, 243));
-    background-image: -o-linear-gradient(top, rgb(172, 228, 248), rgb(108, 205, 243));
-    background-image: -ms-linear-gradient(top, rgb(172, 228, 248), rgb(108, 205, 243));
-    background-image: linear-gradient(top, rgb(172, 228, 248), rgb(108, 205, 243));
-    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#ace4f8', EndColorStr='#6ccdf3');
-    border:1px solid #79b5cb;
-}
 /*.odd {*/
   /*background-color: #B59A4D;*/
 /*}*/

@@ -22,13 +22,14 @@
             <% recommendations =  Recommendations.by_host(host).by_episode(@episode).all %>
             <% recommendations.each do |recommendation| %>
             <% r = RecommendationDisplay.new(recommendation) %>
-              <div class='recommendation'>
-                <p class='poster' data-badge='<%= recommendation.movie.number_of_recommendations %>'>
-                <%= link_to image_tag(r.image) , "http://www.imdb.com/title/#{recommendation.movie.id}", {target: '_blank'} %>
-                <span class='recommendation_count'><%= recommendation.movie.number_of_recommendations %></span>
+            <div class='recommendation'>
+                <p class='poster'>
+                  <%= link_to image_tag(r.image) , 
+                    "http://www.imdb.com/title/#{recommendation.movie.id}", {'target' => '_blank'} %>
                 </p>
                 <p class='title'>
-                  <%= link_to r.name, "http://www.imdb.com/title/#{recommendation.movie.id}", {target: '_blank'} %>
+                <%= link_to r.name, "http://www.imdb.com/title/#{recommendation.movie.id}", {target: '_blank'} %>
+                {<%= recommendation.movie.number_of_recommendations %>}
                 </p>
               </div>
             <% end %>
