@@ -11,7 +11,7 @@ class RecommendationDisplay
 
   def image
     if @movie.poster
-      @movie.poster
+      "/images/#{@movie.id}.jpg"
     else
       "/images/nopicture.gif"
     end

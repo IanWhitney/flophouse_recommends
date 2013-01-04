@@ -21,7 +21,7 @@ recommendation_rows.each do |row|
     host_id = $redis.get "id_for_host_name:#{host}"
     raw_recommendations = row[host.downcase.to_sym]
     recommendations = raw_recommendations ? raw_recommendations.split("|") : []
-    
+
     if !recommendations.empty?
       $redis.sadd "episodes_for_host:#{host_id}", episode_id
       $redis.sadd "hosts_for_episode:#{episode_id}", host_id
@@ -36,6 +36,12 @@ recommendation_rows.each do |row|
         $redis.hset "recommendation:#{recommendation_id}", 'host_id', host_id
         $redis.hset "recommendation:#{recommendation_id}", 'episode_id', episode_id
         $redis.hset "recommendation:#{recommendation_id}", 'imdb_id', recommendation
+        imdb_entry = IMDBEntry.new(recommendation)
+        $redis.sadd 'movie_ids', imdb_entry.id
+        $redis.hset "movie:#{imdb_entry.id}", 'id', imdb_entry.id
+        $redis.hset "movie:#{imdb_entry.id}", 'title', imdb_entry.title
+        $redis.hset "movie:#{imdb_entry.id}", 'poster_uri', imdb_entry.poster_uri
+        IMDBImageCopier.new(imdb_entry)
       end
     end
   end
