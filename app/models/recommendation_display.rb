@@ -1,3 +1,4 @@
+include AWS::S3
 class RecommendationDisplay
   def initialize(recommendation)
     @recommendation = recommendation
@@ -11,7 +12,8 @@ class RecommendationDisplay
 
   def image
     if @movie.poster
-      "/images/#{@movie.id}.jpg"
+      AWS::S3::Base.establish_connection!(:access_key_id => ENV["S3_ACCESS_KEY_ID"],:secret_access_key => ENV["S3_SECRET_ACCESS_KEY"])
+      S3Object.find("#{@movie.id}.jpg", ENV['S3_BUCKET']).url
     else
       "/images/nopicture.gif"
     end

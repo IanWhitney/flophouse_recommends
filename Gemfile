@@ -12,6 +12,7 @@ gem 'pg'
 gem 'rspec'
 gem 'httparty'
 gem 'twitter-bootstrap-rails'
+gem 'aws-s3'
 
 group :development do
   gem 'heroku_san'
