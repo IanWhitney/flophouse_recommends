@@ -11,9 +11,9 @@ class RecommendationDisplay
   end
 
   def image
-    if @movie.poster
-      AWS::S3::Base.establish_connection!(:access_key_id => ENV["S3_ACCESS_KEY_ID"],:secret_access_key => ENV["S3_SECRET_ACCESS_KEY"])
-      S3Object.find("#{@movie.id}.jpg", ENV['S3_BUCKET']).url
+    AWS::S3::Base.establish_connection!(:access_key_id => ENV["S3_ACCESS_KEY_ID"],:secret_access_key => ENV["S3_SECRET_ACCESS_KEY"])
+    if S3Object.exists?("#{@movie.id}.jpg", ENV['S3_BUCKET'])
+      S3Object.url_for("#{@movie.id}.jpg", ENV['S3_BUCKET'])
     else
       "/images/nopicture.gif"
     end
