@@ -12,7 +12,7 @@ class IMDBEntry
   end
 
   def has_poster?
-    poster_uri.match(/http/)
+    poster_uri && poster_uri.match(/http/)
   end
 
   def poster_uri
