@@ -1,17 +1,20 @@
 require 'csv'
 
 @data_file = File.open("test/csv/data.csv")
-@hosts = ["Dan","Stuart","Elliot","Guest"]
-@hosts.each_with_index do |h,i|
-  host_id = i + 1
-  $redis.sadd 'host_names', h
-  $redis.sadd 'host_ids', host_id
-  $redis.set "id_for_host_name:#{h}", host_id
-  $redis.hset "host:#{host_id}", 'id', host_id
-  $redis.hset "host:#{host_id}", 'name', h
-end
-
 recommendation_rows = CSV.table(@data_file)
+
+@hosts = recommendation_rows.first.headers.reject {|h| h == :episode}
+
+@hosts.each_with_index do |h,i|
+  host_name = h.to_s.titleize
+  @hosts[i] = host_name
+  host_id = i + 1
+  $redis.sadd 'host_names', host_name
+  $redis.sadd 'host_ids', host_id
+  $redis.set "id_for_host_name:#{host_name}", host_id
+  $redis.hset "host:#{host_id}", 'id', host_id
+  $redis.hset "host:#{host_id}", 'name', host_name
+end
 
 recommendation_rows.each do |row|
   episode_id = row[:episode]
@@ -19,7 +22,8 @@ recommendation_rows.each do |row|
   $redis.hset "episode:#{episode_id}", 'id', episode_id
   @hosts.each do |host|
     host_id = $redis.get "id_for_host_name:#{host}"
-    raw_recommendations = row[host.downcase.to_sym]
+    host_sym = host.downcase.gsub(/ /,"_").to_sym
+    raw_recommendations = row[host_sym]
     recommendations = raw_recommendations ? raw_recommendations.split("|") : []
 
     if !recommendations.empty?
