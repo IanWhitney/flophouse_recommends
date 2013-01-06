@@ -1,4 +1,3 @@
-include AWS::S3
 class RecommendationDisplay
   def initialize(recommendation)
     @recommendation = recommendation
@@ -11,8 +10,8 @@ class RecommendationDisplay
   end
 
   def image
-    if @movie.poster_uri
-      @movie.poster_uri
+    if @movie.poster_url
+      @movie.poster_url
     else
       "/images/nopicture.gif"
     end
