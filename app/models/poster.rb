@@ -1,0 +1,2 @@
+class Poster < RemoteFile
+end
