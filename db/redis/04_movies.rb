@@ -2,6 +2,10 @@ require 'csv'
 
 @recommendations = Recommendation.all
 
+if @episode
+  @recommendations = Episode.find(@episode).recommendations.to_a
+end
+
 @recommendations.each do |recommendation|
   if !Movie.find(recommendation.imdb_id)
     imdb_entry = IMDBEntry.new(recommendation.imdb_id)

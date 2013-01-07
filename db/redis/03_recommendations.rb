@@ -5,6 +5,12 @@ recommendation_rows = CSV.table(@data_file)
 
 @episodes = Episode.all
 
+if @episode
+  @episodes = [Episode.find(@episode)]
+end
+
+puts @episode.class
+
 @episodes.each do |episode|
   data_row = recommendation_rows.detect {|r| r[:episode] == episode.id.to_i}
   if episode.hosts

@@ -5,6 +5,10 @@ recommendation_rows = CSV.table(@data_file)
 
 @hosts = Host.all
 
+if @episode
+  recommendation_rows = recommendation_rows.select {|r| r[:episode] == @episode}
+end
+
 recommendation_rows.each do |row|
   episode_id = row[:episode]
   $redis.sadd 'episode_ids', episode_id
