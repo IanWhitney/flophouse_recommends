@@ -1,6 +1,12 @@
     <div id="container">
       <h1>The Flophouse Recommends</h1>
-        <ul id='episode_navigation'>
+      <ul id='episode_navigation'>
+          <% if @newest_episode %>
+            <li data-id='<%= @newest_episode.id %>'>
+            <%= link_to @newest_episode.number, episode_path(@newest_episode.number) %>
+            &hellip;
+            </li>
+          <% end %>
           <% @subsequent_episodes.each do |episode| %>
             <li data-id='<%= episode.id %>'>
             <%= link_to episode.number, episode_path(episode.number) %>
@@ -12,6 +18,12 @@
           <% @previous_episodes.each do |episode| %>
             <li data-id='<%= episode.id %>'>
             <%= link_to episode.number, episode_path(episode.number) %>
+            </li>
+          <% end %>
+          <% if @oldest_episode %>
+            <li data-id='<%= @oldest_episode.id %>'>
+            &hellip;
+            <%= link_to @oldest_episode.number, episode_path(@oldest_episode.number) %>
             </li>
           <% end %>
         </ul>

@@ -25,43 +25,8 @@
 }
 
 #episode_navigation a{
-  position: relative;
-  background: #eeffcd;
-  /*background-image: linear-gradient(to bottom, #fff, #ddd);  */
-  padding: .7em 1.5em;
-  float: left;
   text-decoration: none;
-  /*color: #444;*/
-  /*text-shadow: 0 1px 0 rgba(255,255,255,.8);*/
-  border-radius: 5px 0 0 0;
-  box-shadow: 0 2px 2px rgba(0,0,0,.4);
   text-align: center
-}
-
-#episode_navigation a:hover,
-#episode_navigation a:hover::after,
-#episode_navigation a:focus,
-#episode_navigation a:focus::after{
-  /*background: #fff;*/
-}
-
-#episode_navigation a:focus{
-  outline: 0;
-}
-
-#episode_navigation a::after{
-  content:'';
-  position:absolute;
-  z-index: 1;
-  top: 0;
-  right: -.5em;  
-  bottom: 0;
-  width: 1em;
-  background: #eeffcd;
-  /*background-image: linear-gradient(to bottom, #fff, #ddd);  */
-  box-shadow: 2px 2px 2px rgba(0,0,0,.4);
-  transform: skew(10deg);
-  border-radius: 0 5px 0 0;  
 }
 
 #episode_navigation #current_episode a,

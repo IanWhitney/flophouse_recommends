@@ -10,6 +10,13 @@ class EpisodesController < ApplicationController
     @subsequent_episodes = Episode.subsequent(5,@episode)
     @next_previous_episode = @previous_episodes.empty? ? @episode : @previous_episodes.first
     @next_subsequent_episode = @subsequent_episodes.empty? ? @episode : @subsequent_episodes.last
+    if !@subsequent_episodes.include?(Episode.all.first) && @episode != Episode.all.first
+      @newest_episode = Episode.all.first
+    end
+
+    if !@previous_episodes.include?(Episode.all.last) && @episode != Episode.all.last
+      @oldest_episode = Episode.all.last
+    end
   end
 
   def find
