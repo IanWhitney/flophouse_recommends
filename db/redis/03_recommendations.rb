@@ -1,7 +1,7 @@
 require 'csv'
 
 @data_file = File.open("test/csv/data.csv")
-recommendation_rows = CSV.table(@data_file)
+recommendation_rows = CSV.table(@data_file,{:col_sep => "\t"})
 
 @episodes = Episode.all
 
@@ -15,7 +15,7 @@ end
     episode.hosts.each do |host|
       host_sym = host.name.downcase.gsub(/ /,"_").to_sym
       raw_recommendations = data_row[host_sym]
-      recommendations = raw_recommendations ? raw_recommendations.split("|") : []
+      recommendations = raw_recommendations ? raw_recommendations.split(",") : []
 
       if !recommendations.empty?
         recommendations.each_with_index do |recommendation,index|

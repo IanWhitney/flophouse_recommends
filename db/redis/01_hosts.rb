@@ -1,7 +1,7 @@
 require 'csv'
 
 @data_file = File.open("test/csv/data.csv")
-recommendation_rows = CSV.table(@data_file)
+recommendation_rows = CSV.table(@data_file,{:col_sep => "\t"})
 
 @hosts = recommendation_rows.first.headers.reject {|h| h == :episode}
 
