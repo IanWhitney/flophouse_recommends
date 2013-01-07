@@ -1,12 +1,12 @@
 class Movie < RedisBase
-  attr_reader :title, :poster_url, :has_poster
+  attr_reader :title, :poster_url
 
   def number_of_recommendations
     $redis.get(self.id).to_i
   end
 
   def has_poster?
-    !@has_poster.blank?
+    eval(@has_poster)
   end
 
   def poster_url
