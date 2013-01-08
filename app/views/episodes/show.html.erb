@@ -36,8 +36,12 @@
 </div>
 <div class="row-fluid">
   <div class="span2 offset1">
-    <p><%= link_to "The Flophouse Podcast", "http://www.flophousepodcast.com/"  %> recommends movies at the end of every episode. This site lists all of their recommendations. Click on a title or movie poster to go to IMDB. Click on a hosts's name to see all the movies s/he has recommended. Click on an episode number (or use the left/right arrow keys) to move between episodes.</p>
-    &nbsp;
+    <p><%= link_to "The Flophouse Podcast", "http://www.flophousepodcast.com/"  %> recommends movies at the end of every episode. This site lists all of their recommendations.</p>
+    <ul>
+      <li>Click on a title or movie poster to go to IMDB.</li>
+      <li>Click on a hosts's name to see all the movies s/he has recommended.</li>
+      <li>Click on an episode number (or use the left/right arrow keys) to move between episodes.</li>
+    </ul>
   </div>
     <% if @episode.hosts %>
       <% @episode.hosts.each do |host| %>
@@ -53,7 +57,7 @@
       </p>
       <p class='title'>
             <%= link_to r.name, "http://www.imdb.com/title/#{recommendation.movie.id}", {target: '_blank'} %>
-            {<%= recommendation.movie.number_of_recommendations %>}
+            <span class='small badge badge-success'><%= recommendation.movie.number_of_recommendations %></span>
       </p>
     </div>
         <% end %>
