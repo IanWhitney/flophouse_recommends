@@ -2,38 +2,41 @@
       <h1>The Flophouse Recommends</h1>
       <ul id='episode_navigation'>
           <% if @newest_episode %>
-            <li data-id='<%= @newest_episode.id %>'>
+        <li data-id='<%= @newest_episode.id %>' id='newest_episode'>
             <%= link_to @newest_episode.number, episode_path(@newest_episode.number) %>
-            &hellip;
-            </li>
+        </li>
           <% end %>
           <% @subsequent_episodes.each do |episode| %>
-            <li data-id='<%= episode.id %>'>
+        <li data-id='<%= episode.id %>'>
             <%= link_to episode.number, episode_path(episode.number) %>
-            </li>
+        </li>
           <% end %>
-          <li id='current_episode' data-id='<%= @episode.id %>'>
+        <li id='current_episode' data-id='<%= @episode.id %>'>
             <%= link_to @episode.number, episode_path(@episode.number) %>
-          </li>
+        </li>
           <% @previous_episodes.each do |episode| %>
-            <li data-id='<%= episode.id %>'>
+        <li data-id='<%= episode.id %>'>
             <%= link_to episode.number, episode_path(episode.number) %>
-            </li>
+        </li>
           <% end %>
           <% if @oldest_episode %>
-            <li data-id='<%= @oldest_episode.id %>'>
-            &hellip;
+        <li data-id='<%= @oldest_episode.id %>' id='oldest_episode'>
             <%= link_to @oldest_episode.number, episode_path(@oldest_episode.number) %>
-            </li>
+        </li>
           <% end %>
-        </ul>
+        <li>Jump to episode:
+          <%= form_tag(find_episodes_path) do |f| %>
+            <%= text_field_tag 'find_episode_id', nil, {:size => 2, :style => 'width: 30px important!;'} %>
+          <% end %>
+        </li>
+      </ul>
       <% if @episode.hosts %>
         <% @episode.hosts.each do |host| %>
-          <div class='host <%= cycle('even','odd') %>' style='width:<%= 100/@episode.hosts.count %>%;float:left;'>
+          <div class='host <%= cycle('even','odd') %>'>
             <h1><%= link_to host.name, host_path(host.id) %></h1>
             <% recommendations =  Recommendations.by_host(host).by_episode(@episode).all %>
             <% recommendations.each do |recommendation| %>
-            <% r = RecommendationDisplay.new(recommendation) %>
+              <% r = RecommendationDisplay.new(recommendation) %>
             <div class='recommendation'>
                 <p class='poster'>
                   <%= link_to image_tag(r.image) , 

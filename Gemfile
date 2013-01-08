@@ -11,8 +11,8 @@ gem 'backbone-on-rails'
 gem 'pg'
 gem 'rspec'
 gem 'httparty'
-gem 'twitter-bootstrap-rails'
 gem 'aws-s3'
+gem 'bootstrap-sass', '~> 2.2.2.0'
 
 group :development do
   gem 'heroku_san'

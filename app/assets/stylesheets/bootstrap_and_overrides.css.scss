@@ -1,10 +1,6 @@
-/*
-  =require twitter-bootstrap-static/bootstrap
-
-  Use Font Awesome icons (default)
-  To use Glyphicons sprites instead of Font Awesome, replace with "require twitter-bootstrap-static/sprites"
-  =require twitter-bootstrap-static/fontawesome
-  */
+@import "bootstrap";
+body { padding-top: 60px; }
+@import "bootstrap-responsive";
 body {
   background-color: #fffbba;
 }
@@ -954,4 +950,5 @@ input,textarea,select{color:#555555;}
 .show{display:block;}
 .invisible{visibility:hidden;}
 .affix{position:fixed;}
+
 

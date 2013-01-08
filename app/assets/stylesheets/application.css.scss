@@ -11,6 +11,11 @@
  *= require_self
  *= require_tree .
  */
+
+#container h1 {
+  color: #401300;
+}
+
 #episode_navigation{
   overflow: hidden;
   width: 100%;
@@ -22,6 +27,19 @@
 #episode_navigation li{
   float: left;
   margin: 0 .5em 0 0;
+  padding: .5em;
+}
+
+#episode_navigation li[data-id] {
+  border: solid #004037 1px;
+}
+
+#find_episode_id {
+  width: 20px;
+}
+
+li form {
+  display: inline;
 }
 
 #episode_navigation a{
@@ -29,20 +47,33 @@
   text-align: center
 }
 
-#episode_navigation #current_episode a,
-#episode_navigation #current_episode a::after{
+#episode_navigation #current_episode {
   background: #aec48a;
   z-index: 3;
 }
 
+#episode_navigation #newest_episode, #episode_navigation #oldest_episode {
+  border: none;
+}
+
+#episode_navigation #newest_episode:after {
+  content: '...';
+}
+
+#episode_navigation #oldest_episode:before {
+  content: '...'
+}
+
 .host {
   height: 100%;
+  width: 350px;
+  float: left;
 }
 
 .host h1 {
   text-align: center;
   width: 95%;
-  border-bottom: solid black 1px;
+  border-bottom: solid #004037 1px;
 }
 
 .recommendation {
