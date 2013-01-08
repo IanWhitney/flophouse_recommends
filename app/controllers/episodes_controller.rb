@@ -6,8 +6,8 @@ class EpisodesController < ApplicationController
 
   def show
     @episode = Episode.find(params[:id])
-    @previous_episodes = Episode.previous(3,@episode)
-    @subsequent_episodes = Episode.subsequent(3,@episode)
+    @previous_episodes = Episode.previous(2,@episode)
+    @subsequent_episodes = Episode.subsequent(2,@episode)
     @next_previous_episode = @previous_episodes.empty? ? @episode : @previous_episodes.first
     @next_subsequent_episode = @subsequent_episodes.empty? ? @episode : @subsequent_episodes.last
     if !@subsequent_episodes.include?(Episode.all.first) && @episode != Episode.all.first

@@ -1,60 +1,67 @@
-    <div id="container">
-      <h1>The Flophouse Recommends</h1>
-      <ul id='episode_navigation'>
-          <% if @newest_episode %>
-        <li data-id='<%= @newest_episode.id %>' id='newest_episode'>
-            <%= link_to @newest_episode.number, episode_path(@newest_episode.number) %>
-        </li>
-          <% end %>
-          <% @subsequent_episodes.each do |episode| %>
-        <li data-id='<%= episode.id %>'>
-            <%= link_to episode.number, episode_path(episode.number) %>
-        </li>
-          <% end %>
-        <li id='current_episode' data-id='<%= @episode.id %>'>
-            <%= link_to @episode.number, episode_path(@episode.number) %>
-        </li>
-          <% @previous_episodes.each do |episode| %>
-        <li data-id='<%= episode.id %>'>
-            <%= link_to episode.number, episode_path(episode.number) %>
-        </li>
-          <% end %>
-          <% if @oldest_episode %>
-        <li data-id='<%= @oldest_episode.id %>' id='oldest_episode'>
-            <%= link_to @oldest_episode.number, episode_path(@oldest_episode.number) %>
-        </li>
-          <% end %>
-        <li>Jump to episode:
-          <%= form_tag(find_episodes_path) do |f| %>
-            <%= text_field_tag 'find_episode_id', nil, {:size => 2, :style => 'width: 30px important!;'} %>
-          <% end %>
-        </li>
-      </ul>
-      <% if @episode.hosts %>
-        <% @episode.hosts.each do |host| %>
-          <div class='host <%= cycle('even','odd') %>'>
-            <h1><%= link_to host.name, host_path(host.id) %></h1>
-            <% recommendations =  Recommendations.by_host(host).by_episode(@episode).all %>
-            <% recommendations.each do |recommendation| %>
-              <% r = RecommendationDisplay.new(recommendation) %>
-            <div class='recommendation'>
-                <p class='poster'>
-                  <%= link_to image_tag(r.image) , 
-                    "http://www.imdb.com/title/#{recommendation.movie.id}", {'target' => '_blank'} %>
-                </p>
-                <p class='title'>
-                <%= link_to r.name, "http://www.imdb.com/title/#{recommendation.movie.id}", {target: '_blank'} %>
-                {<%= recommendation.movie.number_of_recommendations %>}
-                </p>
-              </div>
-            <% end %>
-          </div>
+<%= hidden_field_tag 'next_previous_episode', episode_path(@next_previous_episode.id) %>
+<%= hidden_field_tag 'next_subsequent_episode', episode_path(@next_subsequent_episode.id) %>
+<div class='row-fluid'>
+  <div class="span9 offset3">
+    <ul id='episode_navigation'>
+        <% if @newest_episode %>
+      <li data-id='<%= @newest_episode.id %>' id='newest_episode'>
+          <%= link_to @newest_episode.number, episode_path(@newest_episode.number) %>
+      </li>
         <% end %>
-      <% else %>
-        <div class='no_recommendations'>
-          No recommendations for this episode.
-        </div>
-      <% end %>
+        <% @subsequent_episodes.each do |episode| %>
+      <li data-id='<%= episode.id %>'>
+          <%= link_to episode.number, episode_path(episode.number) %>
+      </li>
+        <% end %>
+      <li id='current_episode' data-id='<%= @episode.id %>'>
+          <%= link_to @episode.number, episode_path(@episode.number) %>
+      </li>
+        <% @previous_episodes.each do |episode| %>
+      <li data-id='<%= episode.id %>'>
+          <%= link_to episode.number, episode_path(episode.number) %>
+      </li>
+        <% end %>
+        <% if @oldest_episode %>
+      <li data-id='<%= @oldest_episode.id %>' id='oldest_episode'>
+          <%= link_to @oldest_episode.number, episode_path(@oldest_episode.number) %>
+      </li>
+        <% end %>
+      <li>Jump to episode:
+        <%= form_tag(find_episodes_path) do |f| %>
+          <%= text_field_tag 'find_episode_id', nil, {:size => 2, :style => 'width: 30px important!;'} %>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="row-fluid">
+  <div class="span2 offset1">
+    <p><%= link_to "The Flophouse Podcast", "http://www.flophousepodcast.com/"  %> recommends movies at the end of every episode. This site lists all of their recommendations. Click on a title or movie poster to go to IMDB. Click on a hosts's name to see all the movies s/he has recommended. Click on an episode number (or use the left/right arrow keys) to move between episodes.</p>
+    &nbsp;
+  </div>
+    <% if @episode.hosts %>
+      <% @episode.hosts.each do |host| %>
+  <div class='host <%= cycle('span3','span3') %>'>
+    <h1><%= link_to host.name, host_path(host.id) %></h1>
+        <% recommendations =  Recommendations.by_host(host).by_episode(@episode).all %>
+        <% recommendations.each do |recommendation| %>
+          <% r = RecommendationDisplay.new(recommendation) %>
+    <div class='recommendation'>
+      <p class='poster'>
+            <%= link_to image_tag(r.image, {width: '90%;'}) , 
+                "http://www.imdb.com/title/#{recommendation.movie.id}", {'target' => '_blank'} %>
+      </p>
+      <p class='title'>
+            <%= link_to r.name, "http://www.imdb.com/title/#{recommendation.movie.id}", {target: '_blank'} %>
+            {<%= recommendation.movie.number_of_recommendations %>}
+      </p>
     </div>
-    <%= hidden_field_tag 'next_previous_episode', episode_path(@next_previous_episode.id) %>
-    <%= hidden_field_tag 'next_subsequent_episode', episode_path(@next_subsequent_episode.id) %>
+        <% end %>
+  </div>
+      <% end %>
+    <% else %>
+      <div class='no_recommendations span9'>
+        No recommendations for this episode.
+      </div>
+    <% end %>
+</div>
