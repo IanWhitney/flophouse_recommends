@@ -2,7 +2,7 @@ class RedisBase < RedisBackedModel::RedisBackedModel
   attr_reader :id
 
   def self.all
-    all = RedisArray.new
+    all = []
     ids.each do |id|
       all << self.find(id)
     end
@@ -11,7 +11,7 @@ class RedisBase < RedisBackedModel::RedisBackedModel
 
   def self.find(*args)
     args.flatten!
-    found = RedisArray.new
+    found = []
     args.each do |id|
       attr = $redis.hgetall("#{key}:#{id}")
       if !attr.empty?

@@ -10,6 +10,6 @@ class RedisCollection
 
   def self.collection()
     redis_backed_object = self.name.singularize.constantize
-    @filtered ||= RedisArray.new(redis_backed_object.all)
+    @filtered ||= Array.new(redis_backed_object.all)
   end
 end
