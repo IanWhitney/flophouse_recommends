@@ -11,7 +11,7 @@ end
 
 @episodes.each do |episode|
   data_row = recommendation_rows.detect {|r| r[:episode] == episode.id.to_i}
-  if episode.hosts
+  if !episode.hosts.empty?
     episode.hosts.each do |host|
       host_sym = host.name.downcase.gsub(/ /,"_").to_sym
       raw_recommendations = data_row[host_sym]
