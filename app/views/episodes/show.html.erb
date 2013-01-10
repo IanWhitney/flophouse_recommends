@@ -35,14 +35,7 @@
   </div>
 </div>
 <div class="row-fluid">
-  <div class="span2 offset1">
-    <p><%= link_to "The Flophouse Podcast", "http://www.flophousepodcast.com/"  %> recommends movies at the end of every episode. This site lists all of their recommendations.</p>
-    <ul>
-      <li>Click on a title or movie poster to go to IMDB.</li>
-      <li>Click on a hosts's name to see all the movies s/he has recommended.</li>
-      <li>Click on an episode number (or use the left/right arrow keys) to move between episodes.</li>
-    </ul>
-  </div>
+  <%= render "/shared/about" %>
     <% if @episode.hosts %>
       <% @episode.hosts.each do |host| %>
   <div class='host <%= cycle('span3','span3') %>'>
