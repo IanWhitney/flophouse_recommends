@@ -57,7 +57,9 @@
       </p>
       <p class='title'>
             <%= link_to r.name, "http://www.imdb.com/title/#{recommendation.movie.id}", {target: '_blank'} %>
-            <span class='small badge badge-success'><%= recommendation.movie.number_of_recommendations %></span>
+            <span class='small badge badge-success'>
+              <%= link_to recommendation.movie.number_of_recommendations, movie_path(recommendation.movie.id) %>
+            </span>
       </p>
     </div>
         <% end %>

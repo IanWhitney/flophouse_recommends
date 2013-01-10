@@ -19,12 +19,14 @@ end
 
       if !recommendations.empty?
         recommendations.each_with_index do |recommendation,index|
+          movie_id = recommendation
           recommendation_number = (index + 1)
           recommendation_id = "#{episode.id}_#{host.id}_#{recommendation_number}"
           $redis.incr recommendation
           $redis.sadd 'recommendation_ids', recommendation_id
           $redis.sadd "recommendations_for_episode:#{episode.id}", recommendation_id
           $redis.sadd "recommendations_for_host:#{host.id}", recommendation_id
+          $redis.sadd "recommendations_for_movie:#{movie_id}", recommendation_id
           $redis.hset "recommendation:#{recommendation_id}", 'recommendation_id', recommendation_id
           $redis.hset "recommendation:#{recommendation_id}", 'host_id', host.id
           $redis.hset "recommendation:#{recommendation_id}", 'episode_id', episode.id

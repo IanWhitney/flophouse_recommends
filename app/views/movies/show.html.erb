@@ -1,0 +1,34 @@
+<div class="row-fluid">
+  <div class="span2 offset1">
+    <p><%= link_to "The Flophouse Podcast", "http://www.flophousepodcast.com/"  %> recommends movies at the end of every episode. This site lists all of their recommendations.</p>
+    <ul>
+      <li>Click on a title or movie poster to go to IMDB.</li>
+      <li>Click on a hosts's name to see all the movies s/he has recommended.</li>
+      <li>Click on an episode number (or use the left/right arrow keys) to move between episodes.</li>
+    </ul>
+  </div>
+  <div class="span9">
+    <h1><%= @movie_display.name %></h1>
+    <div class="row-fluid">
+      <div class="span3">
+        <div class='recommendation'>
+          <p class='poster'>
+                <%= link_to image_tag(@movie_display.image, {width: '90%;'}) , 
+                    "http://www.imdb.com/title/#{@movie.id}", {'target' => '_blank'} %>
+          </p>
+          <p class='title'>
+                <%= link_to @movie_display.name, "http://www.imdb.com/title/#{@movie.id}", {target: '_blank'} %>
+          </p>
+        </div>
+      </div>
+      <div class="span6">
+        <h2>Recommended by</h2>
+        <ul>
+        <% @movie.recommendations.each do |recommendation| %>
+          <li><%= recommendation.host.name %> in <%= link_to "Episode #{recommendation.episode.id}", episode_path(recommendation.episode.id) %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
