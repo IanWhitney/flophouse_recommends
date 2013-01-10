@@ -1,4 +1,8 @@
 Keep host name capitalization correct. Dan McCoy.
+Search for Movie by title
+Movie watched that episode.
+MovieDisplay and RecommendationDisplay are the same
+keyboard shortcuts override back shortcut
 
 Episode.destroy()
   Wipes all redis fields for episode
@@ -16,6 +20,3 @@ Episode.destroy()
     $redis.del("recommendation:#{r}")
   end
   $redis.del("recommendations_for_episode:81")
-
-Episode.add()
-  Creates just that episode from csv file
