@@ -65,12 +65,10 @@ class RedisBase < RedisBackedModel::RedisBackedModel
   def has_many(obj)
     id_collection = $redis.smembers(obj.to_s.pluralize.downcase + "_for_" + self.class.name.downcase + ":" + self.id)
     c = obj.find(id_collection)
-    if c.nil?
-      []
-    elsif c.respond_to?(:each)
-      c
+    if c.respond_to?(:each)
+      c.compact
     else
-      [c]
+      [c].compact
     end
   end
 
