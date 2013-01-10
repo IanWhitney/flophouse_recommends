@@ -18,7 +18,7 @@
         <h2>Recommended by</h2>
         <ul>
         <% @movie.recommendations.each do |recommendation| %>
-          <li><%= recommendation.host.name %> in <%= link_to "Episode #{recommendation.episode.id}", episode_path(recommendation.episode.id) %></li>
+          <li><%= link_to recommendation.host.name, host_path(recommendation.host.id) %> in <%= link_to "Episode #{recommendation.episode.id}", episode_path(recommendation.episode.id) %></li>
         <% end %>
         </ul>
       </div>
