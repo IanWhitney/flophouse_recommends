@@ -38,7 +38,7 @@
   <%= render "/shared/about" %>
     <% if @episode.hosts %>
       <% @episode.hosts.each do |host| %>
-  <div class='host <%= cycle('span3','span3') %>'>
+  <div class='host <%= cycle("span#{(9/@episode.hosts.count).round}","span#{(9/@episode.hosts.count).round}") %>'>
     <h1><%= link_to host.name, host_path(host.id) %></h1>
         <% recommendations =  Recommendations.by_host(host).by_episode(@episode).all %>
         <% recommendations.each do |recommendation| %>
