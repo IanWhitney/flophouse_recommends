@@ -36,7 +36,7 @@
 </div>
 <div class="row-fluid">
   <%= render "/shared/about" %>
-    <% if @episode.hosts %>
+    <% if @episode.has_recommendations? %>
       <% @episode.hosts.each do |host| %>
   <div class='host <%= cycle("span#{(9/@episode.hosts.count).round}","span#{(9/@episode.hosts.count).round}") %>'>
     <h1><%= link_to host.name, host_path(host.id) %></h1>

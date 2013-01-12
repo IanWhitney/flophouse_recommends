@@ -10,6 +10,10 @@ class Episode < RedisBase
   def recommendations
     has_many(Recommendation)
   end
+  
+  def has_recommendations?
+    !hosts.empty?
+  end
 
   def hosts
     has_many(Host)
