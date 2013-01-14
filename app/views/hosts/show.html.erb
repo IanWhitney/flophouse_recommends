@@ -2,22 +2,5 @@
   <%= render "/shared/about" %>
   <div class='span9'>
     <h2><%= @host.name %></h2>
-    <% @episodes.each do |episode| %>
-    <h3>
-      <%= link_to "Episode #{episode.number}", episode_path(episode.id) %>
-    </h3>
-    <ul>
-      <% recommendations =  Recommendations.by_host(@host).by_episode(episode).all %>
-      <% recommendations.each do |recommendation| %>
-        <% r = RecommendationDisplay.new(recommendation) %>
-      <li>
-          <%= link_to r.name, "http://www.imdb.com/title/#{recommendation.movie.id}", {target: '_blank'} %>
-          <span class='small badge badge-success'>
-            <%= link_to recommendation.movie.number_of_recommendations, movie_path(recommendation.movie.id) %>
-          </span>
-          
-      </li>
-        <% end %>
-    </ul>
-      <% end %>
+    <p>Recommendations by host aren't working right now, sorry.</p>
   </div>
