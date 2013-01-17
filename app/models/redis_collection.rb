@@ -1,15 +1,20 @@
 class RedisCollection
   def self.all()
-    self.collection()
-    all = @filtered
-    @filtered = nil
-    all
+    if self.filter_chain.count > 1
+      intersect = $redis.sinter(self.filter_chain)
+    else
+      intersect = $redis.smembers(self.filter_chain)
+    end
+
+    @filter_chain = nil
+
+    redis_backed_object = self.name.singularize.constantize
+    [redis_backed_object.find(intersect)].flatten.compact
   end
 
   private
 
-  def self.collection()
-    redis_backed_object = self.name.singularize.constantize
-    @filtered ||= Array.new(redis_backed_object.all)
+  def self.filter_chain
+    @filter_chain ||= []
   end
 end
