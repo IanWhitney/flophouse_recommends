@@ -1,22 +1,8 @@
 Keep host name capitalization correct. Dan McCoy. Meghan O'neill.
-Search for Movie by title
 Movie watched that episode.
-MovieDisplay and RecommendationDisplay are the same
+MovieDisplay and RecommendationDisplay are the same with minor
+differences. Extract.
 keyboard shortcuts override back shortcut
-
-Episode.destroy()
-  Wipes all redis fields for episode
-  $redis.srem('episode_ids','81')
-  $redis.del("episode:81")
-  $redis.smembers("hosts_for_episode:81").each do |h|
-    $redis.srem("episodes_for_host:#{h}",81)
-  end
-  $redis.del("hosts_for_episode:81")
-  $redis.smembers("recommendations_for_episode:81").each do |r|
-    rec = Recommendation.find(r)
-    $redis.decr rec.imdb_id
-    $redis.srem("recommendation_ids:#{r}")
-    $redis.srem("recommendation_ids:#{rec.host.id}",r)
-    $redis.del("recommendation:#{r}")
-  end
-  $redis.del("recommendations_for_episode:81")
+Get posters for movies without one.
+Get better posters for movies with shitty ones.
+Search handling seems to be in the wrong controller. Improve
