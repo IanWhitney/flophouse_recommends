@@ -9,5 +9,9 @@ FlophouseRecommends::Application.routes.draw do
 
   resources :hosts, :only => [:show]
 
-  resources :movies, :only => [:show]
+  resources :movies, :only => [:show] do
+    collection do
+      post :search
+    end
+  end
 end

@@ -31,6 +31,11 @@
           <%= text_field_tag 'find_episode_id', nil%>
         <% end %>
       </li>
+      <li>Search:
+        <%= form_tag(search_movies_path) do |f| %>
+          <%= text_field_tag 'title', nil%>
+        <% end %>
+      </li>
     </ul>
   </div>
 </div>
