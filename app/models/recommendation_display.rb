@@ -16,4 +16,12 @@ class RecommendationDisplay
       "/images/nopicture.gif"
     end
   end
+
+  def url
+    "http://www.imdb.com/title/#{@movie.id}"
+  end
+
+  def badge
+    {label: @movie.number_of_recommendations, url: "movie_path('#{@movie.id}')"}
+  end
 end

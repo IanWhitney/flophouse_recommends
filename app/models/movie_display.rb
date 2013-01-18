@@ -15,4 +15,12 @@ class MovieDisplay
       "/images/nopicture.gif"
     end
   end
+
+  def url
+    "http://www.imdb.com/title/#{@movie.id}"
+  end
+
+  def badge
+    nil
+  end
 end

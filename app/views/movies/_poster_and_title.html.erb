@@ -1,0 +1,13 @@
+    <div class='recommendation'>
+      <p class='poster'>
+        <%= link_to image_tag(displayer.image, {width: '90%;'}), displayer.url, {'target' => '_blank'} %>
+      </p>
+      <p class='title'>
+        <%= link_to displayer.name, displayer.url, {target: '_blank'} %>
+        <% if displayer.badge %>
+          <span class='small badge badge-success'>
+            <%= link_to displayer.badge[:label], eval(displayer.badge[:url]) %>
+          </span>
+        <% end %>
+      </p>
+    </div>

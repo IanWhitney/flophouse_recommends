@@ -2,15 +2,7 @@
 <h1><%= @movie_display.name %></h1>
 <div class="row-fluid">
   <div class="span3">
-    <div class='recommendation'>
-      <p class='poster'>
-            <%= link_to image_tag(@movie_display.image, {width: '90%;'}) , 
-                "http://www.imdb.com/title/#{movie.id}", {'target' => '_blank'} %>
-      </p>
-      <p class='title'>
-            <%= link_to @movie_display.name, "http://www.imdb.com/title/#{movie.id}", {target: '_blank'} %>
-      </p>
-    </div>
+    <%= render :partial => "/movies/poster_and_title", :locals => {displayer: @movie_display} %>
   </div>
   <div class="span6">
     <h2>Recommended by</h2>
