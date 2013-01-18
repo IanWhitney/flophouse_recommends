@@ -3,6 +3,5 @@ Movie watched that episode.
 MovieDisplay and RecommendationDisplay are the same with minor
 differences. Extract.
 keyboard shortcuts override back shortcut
-Get posters for movies without one.
 Get better posters for movies with shitty ones.
 Search handling seems to be in the wrong controller. Improve
