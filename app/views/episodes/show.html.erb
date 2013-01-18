@@ -1,44 +1,5 @@
 <%= hidden_field_tag 'next_previous_episode', episode_path(@next_previous_episode.id) %>
 <%= hidden_field_tag 'next_subsequent_episode', episode_path(@next_subsequent_episode.id) %>
-<div class='row-fluid'>
-  <div class="span9 offset3">
-    <ul id='episode_navigation'>
-        <% if @newest_episode %>
-      <li data-id='<%= @newest_episode.id %>' id='newest_episode'>
-          <%= link_to @newest_episode.number, episode_path(@newest_episode.number) %>
-      </li>
-        <% end %>
-        <% @subsequent_episodes.each do |episode| %>
-      <li data-id='<%= episode.id %>'>
-          <%= link_to episode.number, episode_path(episode.number) %>
-      </li>
-        <% end %>
-      <li id='current_episode' data-id='<%= @episode.id %>'>
-          <%= link_to @episode.number, episode_path(@episode.number) %>
-      </li>
-        <% @previous_episodes.each do |episode| %>
-      <li data-id='<%= episode.id %>'>
-          <%= link_to episode.number, episode_path(episode.number) %>
-      </li>
-        <% end %>
-        <% if @oldest_episode %>
-      <li data-id='<%= @oldest_episode.id %>' id='oldest_episode'>
-          <%= link_to @oldest_episode.number, episode_path(@oldest_episode.number) %>
-      </li>
-        <% end %>
-      <li>Jump to episode:
-        <%= form_tag(find_episodes_path) do |f| %>
-          <%= text_field_tag 'find_episode_id', nil%>
-        <% end %>
-      </li>
-      <li>Search:
-        <%= form_tag(search_movies_path) do |f| %>
-          <%= text_field_tag 'title', nil%>
-        <% end %>
-      </li>
-    </ul>
-  </div>
-</div>
 <div class="row-fluid">
   <%= render "/shared/about" %>
     <% if @episode.has_recommendations? %>

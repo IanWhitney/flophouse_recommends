@@ -1,0 +1,15 @@
+<div class='row-fluid'>
+  <div class="span9 offset3">
+    <div class='row-fluid'>
+      <div class="span8">
+        <%= render "#{controller.controller_name}/navigation" rescue nil %>
+      </div>
+      <div class="span1">
+        Search:
+        <%= form_tag(search_movies_path) do |f| %>
+          <%= text_field_tag 'title', nil%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
