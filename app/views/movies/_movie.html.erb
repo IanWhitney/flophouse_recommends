@@ -1,0 +1,23 @@
+<% @movie_display = MovieDisplay.new(movie) %>
+<h1><%= @movie_display.name %></h1>
+<div class="row-fluid">
+  <div class="span3">
+    <div class='recommendation'>
+      <p class='poster'>
+            <%= link_to image_tag(@movie_display.image, {width: '90%;'}) , 
+                "http://www.imdb.com/title/#{movie.id}", {'target' => '_blank'} %>
+      </p>
+      <p class='title'>
+            <%= link_to @movie_display.name, "http://www.imdb.com/title/#{movie.id}", {target: '_blank'} %>
+      </p>
+    </div>
+  </div>
+  <div class="span6">
+    <h2>Recommended by</h2>
+    <ul>
+    <% movie.recommendations.each do |recommendation| %>
+      <li><%= link_to recommendation.host.name, host_path(recommendation.host.id) %> in <%= link_to "Episode #{recommendation.episode.id}", episode_path(recommendation.episode.id) %></li>
+    <% end %>
+    </ul>
+  </div>
+</div>
