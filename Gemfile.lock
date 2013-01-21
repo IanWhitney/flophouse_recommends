@@ -81,6 +81,7 @@ GEM
     mime-types (1.19)
     multi_json (1.5.0)
     multi_xml (0.5.1)
+    newrelic_rpm (3.5.5.38)
     pg (0.14.0)
     polyglot (0.3.3)
     rack (1.4.3)
@@ -151,6 +152,7 @@ DEPENDENCIES
   heroku_san
   httparty
   jquery-rails
+  newrelic_rpm
   pg
   rails (= 3.2.11)
   redis

@@ -13,6 +13,7 @@ gem 'rspec'
 gem 'httparty'
 gem 'aws-s3'
 gem 'bootstrap-sass', '~> 2.2.2.0'
+gem 'newrelic_rpm'
 
 group :development do
   gem 'heroku_san'
