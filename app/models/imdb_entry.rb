@@ -1,14 +1,14 @@
 class IMDBEntry
-  attr_reader :id
+  attr_accessor :id, :response
 
   def initialize(imdb_id)
-    @id = imdb_id
-    url = "http://www.omdbapi.com/?i=#{id}&t="
-    @response = HTTParty.get(url)
+    self.id = imdb_id
+    url = "http://www.omdbapi.com/?i=#{self.id}&t="
+    self.response = HTTParty.get(url)
   end
 
   def details
-    JSON.parse(@response.parsed_response)
+    JSON.parse(response.parsed_response)
   end
 
   def has_poster?

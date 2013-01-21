@@ -1,16 +1,18 @@
 class MovieDisplay
+  attr_accessor
+
   def initialize(movie)
-    @movie = movie
+    self.movie = movie
     self
   end
 
   def name
-    @movie.title
+    movie.title
   end
 
   def image
-    if @movie.poster_url
-      @movie.poster_url
+    if movie.poster_url
+      movie.poster_url
     else
       "/images/nopicture.gif"
     end
