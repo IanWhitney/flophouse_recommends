@@ -3,11 +3,7 @@ require 'csv'
 @data_file = File.open("test/csv/data.csv")
 recommendation_rows = CSV.table(@data_file,{:col_sep => "\t"})
 
-@episodes = Episode.all
-
-if @episode
-  @episodes = [Episode.find(@episode)]
-end
+@episodes = @episode ? [Episode.find(@episode)] : Episode.all
 
 @episodes.each do |episode|
   data_row = recommendation_rows.detect {|r| r[:episode] == episode.id.to_i}

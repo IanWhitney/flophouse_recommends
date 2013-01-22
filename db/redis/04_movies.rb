@@ -1,10 +1,6 @@
 require 'csv'
 
-@recommendations = Recommendation.all
-
-if @episode
-  @recommendations = Episode.find(@episode).recommendations.to_a
-end
+@recommendations = @episode ? Episode.find(@episode).recommendations.to_a : Recommendation.all  
 
 @recommendations.each do |recommendation|
   if !Movie.find(recommendation.imdb_id)
@@ -15,8 +11,4 @@ end
     $redis.hset "movie:#{imdb_entry.id}", 'has_poster', imdb_entry.has_poster?
     IMDBImageCopier.new(imdb_entry).copy
   end
-end
-
-Movie.all.each do |m|
-  $redis.set "title_search:#{m.title.downcase}", m.id
 end
