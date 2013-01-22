@@ -13,7 +13,7 @@ end
     $redis.hset "movie:#{imdb_entry.id}", 'id', imdb_entry.id
     $redis.hset "movie:#{imdb_entry.id}", 'title', imdb_entry.title
     $redis.hset "movie:#{imdb_entry.id}", 'has_poster', imdb_entry.has_poster?
-    IMDBImageCopier.new(imdb_entry)
+    IMDBImageCopier.new(imdb_entry).copy
   end
 end
 
