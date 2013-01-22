@@ -23,6 +23,10 @@ class RedisBase < RedisBackedModel::RedisBackedModel
       found.count == 1 ? found.first : found
     end
   end
+  
+  def self.find_collection(id_collection)
+    [self.find(id_collection)].flatten.compact
+  end
 
   def self.subsequent(count,instance)
     i = self.all.index(instance)
@@ -64,7 +68,7 @@ class RedisBase < RedisBackedModel::RedisBackedModel
 
   def has_many(obj)
     id_collection = $redis.smembers(obj.to_s.pluralize.downcase + "_for_" + self.class.name.downcase + ":" + self.id)
-    [obj.find(id_collection)].flatten.compact
+    obj.find_collection(id_collection)
   end
 
   def self.key

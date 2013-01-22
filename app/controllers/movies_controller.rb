@@ -8,7 +8,7 @@ class MoviesController < ApplicationController
         matched_titles.each do |title|
           ids << $redis.get(title)
         end
-        @movies = [Movie.find(ids)].flatten.compact
+        @movies = Movie.find_collection(ids)
       end
     end
   end
