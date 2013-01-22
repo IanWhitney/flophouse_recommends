@@ -1,5 +1,5 @@
 class MovieDisplay
-  attr_accessor
+  attr_accessor :movie
 
   def initialize(movie)
     self.movie = movie
