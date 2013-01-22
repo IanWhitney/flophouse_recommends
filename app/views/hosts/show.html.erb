@@ -2,7 +2,7 @@
   <%= render "/shared/about" %>
   <div class='span9'>
     <h2><%= @host.name %></h2>
-    <% @episodes.each do |episode| %>
+    <% @host.episodes.each do |episode| %>
     <h3>
       <%= link_to "Episode #{episode.number}", episode_path(episode.id) %>
     </h3>
