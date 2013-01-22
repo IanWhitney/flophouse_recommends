@@ -3,9 +3,7 @@ class RedisBase < RedisBackedModel::RedisBackedModel
 
   def self.all
     all = []
-    ids.each do |id|
-      all << self.find(id)
-    end
+    ids.each {|id| all << self.find(id)}
     all
   end
 
@@ -58,12 +56,13 @@ class RedisBase < RedisBackedModel::RedisBackedModel
   private
 
   def has_one(obj, id_override=nil)
-    if id_override 
-      obj.find(id_override)
-    else
-      id_property = (obj.to_s.downcase + "_id").to_sym
-      obj.find(self.send(id_property))
-    end
+    id = id_override ? id_override : get_id(obj)
+    obj.find(id)
+  end
+
+  def get_id(obj)
+    id_property = (obj.to_s.downcase + "_id").to_sym
+    self.send(id_property)
   end
 
   def has_many(obj)
