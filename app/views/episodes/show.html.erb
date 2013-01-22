@@ -1,18 +1,15 @@
 <%= hidden_field_tag 'next_previous_episode', episode_path(@next_previous_episode.id) %>
 <%= hidden_field_tag 'next_subsequent_episode', episode_path(@next_subsequent_episode.id) %>
-<div class="row-fluid">
-  <%= render "/shared/about" %>
-    <% if @episode.has_recommendations? %>
-      <% @episode.hosts.each do |host| %>
-  <div class='host <%= cycle("span#{(9/@episode.hosts.count).round}","span#{(9/@episode.hosts.count).round}") %>'>
-    <h1><%= link_to host.name, host_path(host.id) %></h1>
-    <% recommendations =  Recommendations.by_host(host).by_episode(@episode).all.to_a %>
-    <%= render :partial => "/recommendations/recommendation", :collection => recommendations %> 
-  </div>
-      <% end %>
-    <% else %>
-      <div class='no_recommendations span9'>
-        No recommendations for this episode.
-      </div>
-    <% end %>
-</div>
+<% if @episode.has_recommendations? %>
+  <% @episode.hosts.each do |host| %>
+    <div class='host <%= cycle("span#{(9/@episode.hosts.count).round}","span#{(9/@episode.hosts.count).round}") %>'>
+      <h1><%= link_to host.name, host_path(host.id) %></h1>
+      <% recommendations =  Recommendations.by_host(host).by_episode(@episode).all.to_a %>
+      <%= render :partial => "/recommendations/recommendation", :collection => recommendations %> 
+    </div>
+  <% end %>
+<% else %>
+    <div class='no_recommendations span9'>
+      No recommendations for this episode.
+    </div>
+<% end %>

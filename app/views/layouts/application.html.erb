@@ -12,13 +12,16 @@
   </head>
   <body>
     <div id="main" role="main">
-      <div class='page-header'>
+      <header class='page-header'>
         <h1><%= link_to "The Flop House Recommends", root_path %></h1>
-      </div>
-      <div class="container-fluid">
-        <%= render "shared/navigation" %>
-        <%= yield %>
-      </div> <!--! end of .container -->
+      </header>
+      <%= render "shared/navigation" %>
+      <article class='container-fluid'>
+        <div class='row-fluid'>
+          <%= render "/shared/about" %>
+          <%= yield %>
+        </div>
+      </article>
     </div> <!--! end of #main -->
     <%= javascript_include_tag "application" %>
   </body>
