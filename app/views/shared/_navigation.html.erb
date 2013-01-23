@@ -1,17 +1,17 @@
-<nav class='container-fluid'>
+<section class='container-fluid'>
   <div class='row-fluid'>
     <div class="span9 offset3">
       <div class='row-fluid'>
-        <div class="span8">
+        <nav class="span8" role='nav'>
           <%= render "#{controller.controller_name}/navigation" rescue nil %>
-        </div>
-        <div class="span1">
+        </nav>
+        <section class="span1" role='search'>
           Search:
           <%= form_tag(search_movies_path) do |f| %>
             <%= text_field_tag 'title', nil%>
-        <% end %>
-        </div>
+          <% end %>
+        </section>
       </div>
     </div>
   </div>
-</nav>
+</section>

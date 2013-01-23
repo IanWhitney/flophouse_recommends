@@ -1,15 +1,17 @@
-<% @movie_display = MovieDisplay.new(movie) %>
-<h1><%= @movie_display.name %></h1>
-<div class="row-fluid">
-  <div class="span3">
-    <%= render :partial => "/movies/poster_and_title", :locals => {displayer: @movie_display} %>
+<article>
+  <% @movie_display = MovieDisplay.new(movie) %>
+  <h1><%= @movie_display.name %></h1>
+  <div class="row-fluid">
+    <div class="span3">
+      <%= render :partial => "/movies/poster_and_title", :locals => {displayer: @movie_display} %>
+    </div>
+    <div class="span9">
+      <h2>Recommended by</h2>
+      <ul>
+      <% movie.recommendations.each do |recommendation| %>
+        <li><%= link_to recommendation.host.name, host_path(recommendation.host.id) %> in <%= link_to "Episode #{recommendation.episode.id}", episode_path(recommendation.episode.id) %></li>
+      <% end %>
+      </ul>
+    </div>
   </div>
-  <div class="span6">
-    <h2>Recommended by</h2>
-    <ul>
-    <% movie.recommendations.each do |recommendation| %>
-      <li><%= link_to recommendation.host.name, host_path(recommendation.host.id) %> in <%= link_to "Episode #{recommendation.episode.id}", episode_path(recommendation.episode.id) %></li>
-    <% end %>
-    </ul>
-  </div>
-</div>
+</article>
