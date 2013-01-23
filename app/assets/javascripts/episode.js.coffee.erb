@@ -1,7 +1,7 @@
 keyboard_navigation = (key) ->
   switch key.which
-    when 37 then window.location.replace($('#next_subsequent_episode').val())
-    when 39 then window.location.replace($('#next_previous_episode').val())
+    when 78 then window.location.replace($('#next_subsequent_episode').val())
+    when 80 then window.location.replace($('#next_previous_episode').val())
     else return
   key.preventDefault()
 
