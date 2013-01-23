@@ -1,17 +1,11 @@
-<section class='container-fluid'>
-  <div class='row-fluid'>
-    <div class="span9 offset3">
-      <div class='row-fluid'>
-        <nav class="span8" role='nav'>
-          <%= render "#{controller.controller_name}/navigation" rescue nil %>
-        </nav>
-        <section class="span1" role='search'>
-          Search:
-          <%= form_tag(search_movies_path) do |f| %>
-            <%= text_field_tag 'title', nil%>
-          <% end %>
-        </section>
-      </div>
-    </div>
-  </div>
+<section class='row-fluid'>
+  <nav role='nav' class="span6 offset3">
+    <%= render "#{controller.controller_name}/navigation" rescue nil %>
+  </nav>
+  <section class="span3" role='search' style='text-align:right;'>
+    Search:
+    <%= form_tag(search_movies_path, {style: 'display:inline;'}) do |f| %>
+      <%= text_field_tag 'title', nil%>
+    <% end %>
+  </section>
 </section>
