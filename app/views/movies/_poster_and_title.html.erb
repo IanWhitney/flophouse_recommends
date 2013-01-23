@@ -1,6 +1,6 @@
     <section class='recommendation'>
       <p class='poster'>
-        <%= link_to image_tag(displayer.image, {width: '90%;'}), displayer.url, {'target' => '_blank'} %>
+        <%= link_to image_tag(displayer.image, {alt: "#{displayer.name} poster", width: '90%;'}), displayer.url, {target: '_blank'} %>
       </p>
       <p class='title'>
         <%= link_to displayer.name, displayer.url, {target: '_blank'} %>
