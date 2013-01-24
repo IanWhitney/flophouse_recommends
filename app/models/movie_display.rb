@@ -25,4 +25,8 @@ class MovieDisplay
   def badge
     nil
   end
+
+  def method_missing(meth, *args, &block)
+    movie.send(meth, *args, &block)
+  end
 end

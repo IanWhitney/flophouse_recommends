@@ -8,12 +8,12 @@ class MoviesController < ApplicationController
         matched_titles.each do |title|
           ids << $redis.get(title)
         end
-        @movies = Movie.find_collection(ids)
+        @movies = MoviePresenter.find(ids)
       end
     end
   end
 
   def show
-    @movie = Movie.find(params[:id])
+    @movies = MoviePresenter.find(params[:id])
   end
 end
