@@ -1,6 +1,6 @@
 <ul id='episode_navigation'>
   <% @episode.pagination.each do |episode| %>
-    <li class='<%= episode.class %>' data-id='<%= episode.id %>'>
+    <li class='<%= episode.class %> episode_page' data-id='<%= episode.id %>'>
       <%= link_to episode.label, episode_path(episode.id) %>
     </li>
   <% end %>

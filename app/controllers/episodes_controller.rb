@@ -6,8 +6,6 @@ class EpisodesController < ApplicationController
 
   def show
     @episode = EpisodePresenter.new(Episode.find(params[:id]))
-    @next_previous_episode = @episode
-    @next_subsequent_episode = @episode
   end
 
   def find

@@ -1,7 +1,21 @@
+subsequent_episode = () -> 
+  if $('.current_episode').prev('li.episode_page').length == 0
+    $('.current_episode')
+  else
+    $('.current_episode').prev('li.episode_page')
+
+previous_episode = () -> 
+  if $('.current_episode').next('li.episode_page').length == 0
+    $('.current_episode')
+  else
+    $('.current_episode').next('li.episode_page')
+
+episode_url = (episode) -> $(episode).children().first().attr('href')
+
 keyboard_navigation = (key) ->
   switch key.which
-    when 78 then window.location.replace($('#next_subsequent_episode').val())
-    when 80 then window.location.replace($('#next_previous_episode').val())
+    when 78 then window.location.replace(episode_url(subsequent_episode()) )
+    when 80 then window.location.replace(episode_url(previous_episode()))
     else return
   key.preventDefault()
 
