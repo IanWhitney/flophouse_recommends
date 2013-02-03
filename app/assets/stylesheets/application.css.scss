@@ -47,20 +47,20 @@ li form {
   text-align: center
 }
 
-#episode_navigation #current_episode {
+#episode_navigation .current_episode {
   background: #aec48a;
   z-index: 3;
 }
 
-#episode_navigation #newest_episode, #episode_navigation #oldest_episode {
-  border: none;
+#episode_navigation .newest_episode, #episode_navigation .oldest_episode {
+  border: none !important;
 }
 
-#episode_navigation #newest_episode:after {
+#episode_navigation .newest_episode:after {
   content: '...';
 }
 
-#episode_navigation #oldest_episode:before {
+#episode_navigation .oldest_episode:before {
   content: '...'
 }
 

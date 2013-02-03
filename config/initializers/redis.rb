@@ -5,4 +5,5 @@ if Rails.env.production?
   $redis = Redis.new(:host => uri.host, :port => uri.port, :password => uri.password)
 else
   $redis = Redis.new(:host => 'localhost', :port => 6379)
+  $redis.select(1)
 end

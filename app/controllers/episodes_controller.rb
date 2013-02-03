@@ -5,18 +5,9 @@ class EpisodesController < ApplicationController
   end
 
   def show
-    @episode = Episode.find(params[:id])
-    @previous_episodes = Episode.previous(2,@episode)
-    @subsequent_episodes = Episode.subsequent(2,@episode)
-    @next_previous_episode = @previous_episodes.empty? ? @episode : @previous_episodes.first
-    @next_subsequent_episode = @subsequent_episodes.empty? ? @episode : @subsequent_episodes.last
-    if !@subsequent_episodes.include?(Episode.all.first) && @episode != Episode.all.first
-      @newest_episode = Episode.all.first
-    end
-
-    if !@previous_episodes.include?(Episode.all.last) && @episode != Episode.all.last
-      @oldest_episode = Episode.all.last
-    end
+    @episode = EpisodePresenter.new(Episode.find(params[:id]))
+    @next_previous_episode = @episode
+    @next_subsequent_episode = @episode
   end
 
   def find

@@ -7,6 +7,14 @@ class RedisBase < RedisBackedModel::RedisBackedModel
     all
   end
 
+  def self.first
+    self.find(ids.first)
+  end
+
+  def self.last
+    self.find(ids.last)
+  end
+
   def self.find(*args)
     args.flatten!
     found = []
