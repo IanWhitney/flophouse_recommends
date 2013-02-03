@@ -1,5 +1,4 @@
-Keep host name capitalization correct. Dan McCoy. Meghan O'neill.
+Keep host name capitalization correct. Dan McCoy. Meghan O'Neill.
 Movie watched that episode.
 MovieDisplay and RecommendationDisplay are the same with minor
 differences. Extract.
-Search handling seems to be in the wrong controller. Improve
