@@ -1,25 +1,9 @@
-class RecommendationDisplay
-  attr_accessor :recommendation, :movie
+class RecommendationDisplay < GenericDisplayer
+  attr_accessor :recommendation
 
   def initialize(recommendation)
     self.recommendation = recommendation
     self.movie = recommendation.movie
-  end
-
-  def name
-    movie.title
-  end
-
-  def image
-    if movie.poster_url
-      movie.poster_url
-    else
-      "/images/nopicture.gif"
-    end
-  end
-
-  def url
-    "http://www.imdb.com/title/#{movie.id}"
   end
 
   def badge
