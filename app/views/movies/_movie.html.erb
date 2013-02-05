@@ -2,7 +2,7 @@
   <h1><%= movie.name %></h1>
   <div class="row-fluid">
     <div class="span3">
-      <%= render :partial => "/movies/poster_and_title", :locals => {displayer: movie} %>
+      <%= render :partial => "/movies/poster_and_title", :locals => {movie: movie} %>
     </div>
     <div class="span9">
       <h2>Recommended by</h2>

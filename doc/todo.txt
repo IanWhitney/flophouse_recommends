@@ -1,4 +1,2 @@
 Keep host name capitalization correct. Dan McCoy. Meghan O'Neill.
 Movie watched that episode.
-MovieDisplay and RecommendationDisplay are the same with minor
-differences. Extract.

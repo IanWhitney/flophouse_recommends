@@ -1,5 +1,5 @@
 class HostsController < ApplicationController
   def show
-    @host = Host.find(params[:id])
+    @host = HostEpisodesPresenter.new(Host.find(params[:id]))
   end
 end

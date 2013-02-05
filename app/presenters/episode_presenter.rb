@@ -3,9 +3,12 @@ class EpisodePresenter
 
   def initialize(episode)
     self.episode = episode
-    self.hosts = episode.hosts
-    paginator = EpisodePaginator.new(episode)
-    self.pagination = EpisodePagination.new(paginator)
+    self.hosts = EpisodeHostsPresenter.new(episode,episode.hosts)
+    paginate
+  end
+
+  def paginate
+    self.pagination = EpisodePagination.new(EpisodePaginator.new(episode))
   end
 
   def id

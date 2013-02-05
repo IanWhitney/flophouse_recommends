@@ -2,8 +2,9 @@
   <% @episode.hosts.each do |host| %>
     <article class='host <%= cycle("span#{(12/@episode.hosts.count).round}","span#{(12/@episode.hosts.count).round}") %>'>
       <h1><%= link_to host.name, host_path(host.id) %></h1>
-      <% recommendations =  Recommendations.by_host(host).by_episode(@episode).all.to_a %>
-      <%= render :partial => "/recommendations/recommendation", :collection => recommendations %> 
+      <% host.recommendations.each do |recommendation| %>
+        <%= render :partial => "/movies/poster_and_title", :locals => {movie: recommendation} %>
+      <% end %>
     </article>
   <% end %>
 <% else %>
