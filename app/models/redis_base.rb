@@ -1,12 +1,6 @@
 class RedisBase < RedisBackedModel::RedisBackedModel
   attr_reader :id
 
-  def self.all
-    all = []
-    ids.each {|id| all << self.find(id)}
-    all
-  end
-
   def self.first
     self.find(ids.first)
   end

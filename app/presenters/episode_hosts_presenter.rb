@@ -6,7 +6,7 @@ class EpisodeHostsPresenter
   def initialize(episode,hosts)
     @collection = []
     hosts.each do |host|
-      recommendations = RecommendationPresenter.new(Recommendations.by_host(host).by_episode(episode).all)
+      recommendations = RecommendationPresenter.new(Recommendation.by_host(host).by_episode(episode).all)
       @collection << EpisodeHost.new(host.name, host.id, recommendations)
     end
   end
