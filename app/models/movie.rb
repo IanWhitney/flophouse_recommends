@@ -1,4 +1,5 @@
 class Movie < RedisBase
+  extend RedisScoping
   attr_reader :title, :poster_url
 
   def number_of_recommendations
