@@ -1,7 +1,6 @@
 module RedisScoping
   def all()
     scoped_ids = find_scoped_ids
-    puts scoped_ids
     clear_filter_chain
     [redis_backed_object.find(scoped_ids)].flatten.compact
   end
