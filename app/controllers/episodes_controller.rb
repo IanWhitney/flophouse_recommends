@@ -1,7 +1,6 @@
 class EpisodesController < ApplicationController
   def index
-    @episode = Episode.all.first
-    redirect_to episode_url(@episode.id)
+    @episode = EpisodePresenter.new(Episode.all.first)
   end
 
   def show
