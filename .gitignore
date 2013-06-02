@@ -18,3 +18,5 @@
 /config/initializers/local.rb
 
 .rvmrc
+.ruby-gemset
+.ruby-version
