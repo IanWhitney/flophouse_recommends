@@ -82,7 +82,6 @@ GEM
     multi_json (1.7.1)
     multi_xml (0.5.3)
     newrelic_rpm (3.5.8.70)
-    pg (0.14.1)
     polyglot (0.3.3)
     rack (1.4.5)
     rack-cache (1.2)
@@ -153,7 +152,6 @@ DEPENDENCIES
   httparty
   jquery-rails
   newrelic_rpm
-  pg
   rack (~> 1.4)
   rails (= 3.2.13)
   redis
