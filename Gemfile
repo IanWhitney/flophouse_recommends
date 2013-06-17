@@ -16,10 +16,7 @@ gem 'aws-s3'
 gem 'bootstrap-sass', '~> 2.2.2.0'
 gem 'newrelic_rpm'
 gem 'rack', '~> 1.4'
-
-group :development do
-  gem 'heroku_san'
-end
+gem 'heroku_san'
 
 # Gems used only for assets and not required
 # in production environments by default.
