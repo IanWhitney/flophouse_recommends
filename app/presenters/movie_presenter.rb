@@ -7,9 +7,7 @@ class MoviePresenter
 
   def initialize(collection)
     @collection = []
-    collection.each do |m|
-      @collection << MovieDisplay.new(m)
-    end
+    collection.each {|m| @collection << MovieDisplay.new(m) }
   end
 
   def each &blk

@@ -9,12 +9,16 @@ class Movie < RedisBase
   def has_poster?
     eval(@has_poster)
   end
-  
+
   def recommendations
     has_many(Recommendation)
   end
 
   def poster_url
     Poster.new("#{self.id}.jpg").url if self.has_poster?
+  end
+
+  def as_json(options = {})
+    super(:root => false)
   end
 end
