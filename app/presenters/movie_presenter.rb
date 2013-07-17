@@ -23,4 +23,10 @@ class MoviePresenter
   def respond_to?(method)
     @collection.respond_to?(method)
   end
+
+  def as_json(options={})
+    movies = {movies: []}
+    @collection.each {|m| movies[:movies] << m}
+    movies
+  end
 end
