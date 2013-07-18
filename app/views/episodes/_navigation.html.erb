@@ -6,7 +6,7 @@
   <% end %>
   <li>Jump to episode:
     <%= form_tag(find_episodes_path) do |f| %>
-      <%= text_field_tag 'find_episode_id', nil%>
+      <%= text_field_tag 'find_episode_id', nil, :id => 'episode_search_input' %>
     <% end %>
   </li>
 </ul>

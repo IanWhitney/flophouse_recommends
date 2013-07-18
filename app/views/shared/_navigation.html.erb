@@ -5,7 +5,7 @@
   <section class="span3" role='search' style='text-align:right;'>
     Search:
     <%= form_tag(search_movies_path, {style: 'display:inline;'}) do |f| %>
-      <%= text_field_tag 'title', nil%>
+      <%= text_field_tag 'title', nil, :id => 'movie_search_input' %>
     <% end %>
   </section>
 </section>

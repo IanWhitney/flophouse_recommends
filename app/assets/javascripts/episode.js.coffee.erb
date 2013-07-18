@@ -1,22 +1,17 @@
 subsequent_episode = () -> 
-  if $('.current_episode').prev('li.episode_page').length == 0
-    $('.current_episode')
-  else
-    $('.current_episode').prev('li.episode_page')
+  $('.subsequent_1')
 
 previous_episode = () -> 
-  if $('.current_episode').next('li.episode_page').length == 0
-    $('.current_episode')
-  else
-    $('.current_episode').next('li.episode_page')
+  $('.previous_1')
 
 episode_url = (episode) -> $(episode).children().first().attr('href')
 
 keyboard_navigation = (key) ->
-  switch key.which
-    when 78 then window.location.replace(episode_url(subsequent_episode()) )
-    when 80 then window.location.replace(episode_url(previous_episode()))
-    else return
-  key.preventDefault()
+  unless Application.keyboard_navigation_disabled
+    switch key.which
+      when 78 then window.location.replace(episode_url(subsequent_episode()) )
+      when 80 then window.location.replace(episode_url(previous_episode()))
+      else return
+    key.preventDefault()
 
-<%#jQuery -> $(document).bind 'keydown', (key) => keyboard_navigation(key)%>
+jQuery -> $(document).bind 'keydown', (key) => keyboard_navigation(key)
