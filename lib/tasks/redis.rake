@@ -4,7 +4,7 @@ namespace :redis do
   task :add, [:episode] => [:environment] do |t,args|
     Dir[File.join(Rails.root, 'db', 'redis', '*.rb')].sort.each do |fixture|
       @episode = args[:episode].to_i
-      load fixture 
+      load fixture
       puts "Loaded #{fixture}"
     end
   end
@@ -16,9 +16,9 @@ namespace :redis do
         puts "Loaded #{fixture}"
       end
     else
-      $redis.flushall
-      Dir[File.join(Rails.root, 'db', 'redis', '*.rb')].sort.each do |fixture| 
-        load fixture 
+      $redis.flushdb
+      Dir[File.join(Rails.root, 'db', 'redis', '*.rb')].sort.each do |fixture|
+        load fixture
         puts "Loaded #{fixture}"
       end
     end
@@ -34,4 +34,4 @@ namespace :movie do
   	$redis.hset("movie:#{id.to_s}","has_poster",true)
   end
 end
-  	
+
