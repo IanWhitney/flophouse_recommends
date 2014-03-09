@@ -20,3 +20,4 @@
 .rvmrc
 .ruby-gemset
 .ruby-version
+/vendor/bundle
