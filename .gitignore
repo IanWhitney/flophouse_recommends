@@ -21,3 +21,4 @@
 .ruby-gemset
 .ruby-version
 /vendor/bundle
+/vendor/bundle/*
