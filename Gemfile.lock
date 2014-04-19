@@ -83,6 +83,7 @@ GEM
     multi_xml (0.5.3)
     newrelic_rpm (3.5.8.70)
     polyglot (0.3.3)
+    psych (2.0.5)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -159,6 +160,7 @@ DEPENDENCIES
   httparty
   jquery-rails
   newrelic_rpm
+  psych (~> 2.0.5)
   rack (~> 1.4)
   rack-jsonp-middleware
   rails (= 3.2.14)

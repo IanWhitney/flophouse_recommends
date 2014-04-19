@@ -19,6 +19,7 @@ gem 'newrelic_rpm'
 gem 'rack', '~> 1.4'
 gem 'heroku_san'
 gem 'rack-jsonp-middleware'
+gem 'psych', '~> 2.0.5'
 
 # Gems used only for assets and not required
 # in production environments by default.
