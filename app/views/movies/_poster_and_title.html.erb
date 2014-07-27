@@ -10,7 +10,5 @@
           </span>
         <% end %>
       </p>
-<!--      <p>
-        <%= link_to "Streaming?", "http://www.canistream.it/search/movie/#{movie.name}" %>
-      </p> -->
+      <iframe frameborder="0" src="http://www.canistream.it/external/imdb/<%= movie.id %>?l=default" width="380" height="190" scrolling="no"></iframe>
     </section>
