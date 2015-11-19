@@ -23,6 +23,14 @@ namespace :redis do
       end
     end
   end
+
+  task :remove, [:episode_to_delete] => [:environment] do |t,args|
+    Dir[File.join(Rails.root, 'db', 'redis', 'remove.rb')].sort.each do |fixture|
+      @episode_to_delete = args[:episode_to_delete].to_i
+      load fixture
+      puts "Loaded #{fixture}"
+    end
+  end
 end
 
 namespace :movie do
