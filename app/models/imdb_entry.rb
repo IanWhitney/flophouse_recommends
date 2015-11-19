@@ -8,7 +8,7 @@ class IMDBEntry
   end
 
   def details
-    JSON.parse(response.parsed_response)
+    response.parsed_response
   end
 
   def has_poster?
