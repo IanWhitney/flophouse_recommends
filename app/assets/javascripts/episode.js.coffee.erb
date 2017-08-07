@@ -1,8 +1,8 @@
 subsequent_episode = () -> 
-  $('.subsequent_1')
+  if $('.subsequent_1').length then $('.subsequent_1') else $('.oldest_episode')
 
 previous_episode = () -> 
-  $('.previous_1')
+  if $('.previous_1').length then$('.previous_1') else $('.newest_episode')
 
 episode_url = (episode) -> $(episode).children().first().attr('href')
 
