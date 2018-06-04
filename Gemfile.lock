@@ -170,3 +170,9 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   uglifier (>= 1.0.3)
   unicorn
+
+RUBY VERSION
+   ruby 1.9.3p551
+
+BUNDLED WITH
+   1.16.2

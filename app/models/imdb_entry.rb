@@ -3,7 +3,7 @@ class IMDBEntry
 
   def initialize(imdb_id)
     self.id = imdb_id
-    url = "http://www.omdbapi.com/?i=#{self.id}&t="
+    url = "http://omdbapi.com/?apikey=#{ENV["OMDBAPI_KEY"]}&i=#{self.id}"
     self.response = HTTParty.get(url)
   end
 
