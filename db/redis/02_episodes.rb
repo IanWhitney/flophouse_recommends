@@ -15,7 +15,8 @@ recommendation_rows.each do |row|
   $redis.hset "episode:#{episode_id}", 'id', episode_id
 
   @hosts.each do |host|
-    host_sym = host.name.downcase.gsub(/ /,"_").to_sym
+    host_sym = host.name.downcase.gsub(/ /,"_").gsub(/-/,"_").to_sym
+
     raw_recommendations = row[host_sym]
     recommendations = raw_recommendations ? raw_recommendations.split(",") : []
 

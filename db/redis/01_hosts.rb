@@ -8,6 +8,7 @@ recommendation_rows = CSV.table(@data_file)
 @hosts.each_with_index do |h,i|
   host_name = h.to_s.titleize
   host_name = "Dan McCoy" if host_name == "Dan Mccoy"
+  host_name = "Erin Foley-Chan" if host_name == "Erin Foley Chan"
 
   @hosts[i] = host_name
   host_id = i + 1
