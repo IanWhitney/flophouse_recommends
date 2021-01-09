@@ -9,6 +9,7 @@ recommendation_rows = CSV.table(@data_file)
   host_name = h.to_s.titleize
   host_name = "Dan McCoy" if host_name == "Dan Mccoy"
   host_name = "Erin Foley-Chan" if host_name == "Erin Foley Chan"
+  host_name = "Justin McElroy" if host_name == "Justin Mcelroy"
 
   @hosts[i] = host_name
   host_id = i + 1
