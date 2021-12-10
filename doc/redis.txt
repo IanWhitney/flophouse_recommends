@@ -1,5 +1,0 @@
-Use forwardable for RedisArray
-For has_many code, see if we can abstract that and just pass in the
-  test.
-Dynamic attr_readers for things that descend from Redis Base
-how does the symbol has_many, has_one work? Use in RedisBase
